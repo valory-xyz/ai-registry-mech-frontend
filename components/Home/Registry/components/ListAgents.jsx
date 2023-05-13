@@ -23,7 +23,7 @@ const { TabPane } = Tabs;
 const ALL_AGENTS = 'all-agents';
 const MY_AGENTS = 'my-agents';
 
-const ListAgents = () => {
+const ListAgents = (onMechClick) => {
   const router = useRouter();
   const hash = getHash(router);
   const [currentTab, setCurrentTab] = useState(
