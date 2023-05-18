@@ -45,10 +45,11 @@ Request
 ~~~json
 {
     "prompt": "The request prompt goes here",
-    "tool": "The tool we want the off-chain agent to use goes here, for example openai-gpt4",
+    "tools": ["The tools we want to use go here", "can be multiple or just one"],
     "nonce": "The uuid goes here"
 }
 ~~~
+If the request specifies tools that the Agent has specified in its metadata (also on IPFS) then the request is valid and the Agent will perform the task. If the request uses tools that the Agent has not specified in its metadata then the request is invalid and the Agent will not perform the task.
 2. AgentMech emits Request() event with the corresponding request id and data (IPFS hash)
 3. Off-chain agent listens for Request() events to read new request data on IPFS associated to a given request id and IPFS hash inside the Request() event on-chain.
 4. Off-chain agent uses the specified tool in the request data to return a response to the request in the form of data on IPFS at a given IPFS hash.
@@ -106,7 +107,7 @@ The AgentFactory is an implementation of [Generic Manager](https://github.com/va
     - [Mech](https://github.com/gnosis/mech/blob/f6fa16551dba14fa8310fce0fd24c40be58fc7d1/contracts/base/Mech.sol)
     - [Immutable Storage](https://github.com/gnosis/mech/blob/f6fa16551dba14fa8310fce0fd24c40be58fc7d1/contracts/base/ImmutableStorage.sol)
         - [ERC721Mech](https://github.com/gnosis/mech/blob/f6fa16551dba14fa8310fce0fd24c40be58fc7d1/contracts/ERC721Mech.sol)
-            - AgentMech.sol
+            - AgentMech
 - [Autonolas Registries](https://github.com/valory-xyz/autonolas-registries/tree/00add36760c4b2faf5b5b11199af7d1ec38957fd)
     - [Generic Registry](https://github.com/valory-xyz/autonolas-registries/blob/00add36760c4b2faf5b5b11199af7d1ec38957fd/contracts/GenericRegistry.sol)
         - Agent Registry
