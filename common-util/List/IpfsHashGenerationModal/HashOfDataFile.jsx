@@ -27,7 +27,8 @@ const IpfsModal = ({ visible, handleCancel, callback }) => {
 
       const hash = await getIpfsHashHelper(
         {
-          ...values,
+          prompt: values.prompt.trim(),
+          tools: values.tools.split(',').map((tool) => tool.trim()),
           nonce: uuidv4(),
         },
         { noImage: true },
@@ -100,14 +101,10 @@ const IpfsModal = ({ visible, handleCancel, callback }) => {
         </Form.Item>
 
         <Form.Item
-          label="Tool"
-          name="tool"
-          rules={[
-            {
-              required: true,
-              message: 'Please input the tool',
-            },
-          ]}
+          label="Tools"
+          extra="Please enter the tools in comma separated format"
+          name="tools"
+          rules={[{ required: true, message: 'Please input the tool' }]}
         >
           <Input />
         </Form.Item>
