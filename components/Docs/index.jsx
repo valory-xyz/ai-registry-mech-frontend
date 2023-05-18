@@ -50,6 +50,18 @@ Request
 }
 ~~~
 If the request specifies tools that the Agent has specified in its metadata (also on IPFS) then the request is valid and the Agent will perform the task. If the request uses tools that the Agent has not specified in its metadata then the request is invalid and the Agent will not perform the task.
+
+Agent Metadata Example:
+~~~json
+{
+  "name":"Autonolas Mech III",
+  "description":"The mech executes AI tasks requested on-chain and delivers the results to the requester.",
+  "inputFormat":"ipfs-v0.1",
+  "outputFormat":"ipfs-v0.1",
+  "image":"tbd"
+}
+~~~
+
 2. AgentMech emits Request() event with the corresponding request id and data (IPFS hash)
 3. Off-chain agent listens for Request() events to read new request data on IPFS associated to a given request id and IPFS hash inside the Request() event on-chain.
 4. Off-chain agent uses the specified tool in the request data to return a response to the request in the form of data on IPFS at a given IPFS hash.
@@ -62,6 +74,7 @@ Deliver
 }
 ~~~
 5. Off-chain agent calls the deliver() function on-chain with the corresponding request id and response data (IPFS hash)
+
 
 Abstract:
 Each off-chain agent is instructed on-chain via the AgentMech contract's request() function and the off-chain agent delivers results via the deliver() function. AgentMech inherits from [ERC721Mech](https://github.com/gnosis/mech/blob/f6fa16551dba14fa8310fce0fd24c40be58fc7d1/contracts/ERC721Mech.sol) which is part of the Gnosis "Mech" library [here](https://github.com/gnosis/mech/tree/f6fa16551dba14fa8310fce0fd24c40be58fc7d1).
