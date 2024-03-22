@@ -84,7 +84,7 @@ const IpfsModal = ({
               Request
             </Button>
           </div>
-          {!account && <div className="text-gray-500 mt-12">* Please connect your wallet</div>}
+          {!account && <div className="text-gray-500 mt-12">To make a request, connect your wallet</div>}
         </Fragment>,
       ]}
     >
