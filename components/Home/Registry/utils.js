@@ -127,7 +127,6 @@ export const getFilteredAgents = async (searchValue, account) => {
 export const getAgents = (total, nextPage = 1) => new Promise((resolve, reject) => {
   try {
     const { first } = getFirstAndLastIndex(total, nextPage);
-    console.log('total', total, 'first', first);
     getAgentsHelper({ total, first: first - 1, resolve });
   } catch (e) {
     console.error(e);
